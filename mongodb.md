@@ -29,4 +29,14 @@
    `db.users.find().sort({ name: 1, age: -1})`
 1. **db.**<u>_collection name_</u>**.find().skip(**_n_**):** This command skips n number of items. Example usage:  
    `db.users.find().skip(1).limit(2)`
+1. **db.**<u>_collection name_</u>**.find(**_{ key : value }_**):** This command is used to find an item based on the provided key value pair. Example usage:  
+   `db.users.find({ name: 'Hamza' })`
+1. **db.**<u>_collection name_</u>**.find(**_{ key : value }, { key : 1 or 0 }_**):** This command is used to find the item based on the first key value pair and return only those elements of the item that are described in the second key value pair. Example usage:  
+    `db.users.find({ name: 'Hamza' }, { name: 1, age: 1 })`  
+   This above written command finds the object containing `name: 'Hamza'` but does not return the entire object rather only returns the **name** and **age** properties of the object. If you want all elements of the object to be returned except the specified one then put key to be 0 in the second object. Example usage:  
+   `db.users.find({ name: 'Hamza' }, { age: 0 })`  
+   The above command will return all properties of the found object except the age property. Put `_id: 0` if you do not want the id to be returned as well.
+
+## Complex Query Commands
+
 1.
