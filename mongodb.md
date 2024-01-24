@@ -39,4 +39,4 @@
 
 ## Complex Query Commands
 
-1.
+1.  **db.**<u>_collection name_</u>**.find(**_{ key : {} }_**):** 
