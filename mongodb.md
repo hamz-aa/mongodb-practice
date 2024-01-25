@@ -39,35 +39,45 @@
 
 ## Complex Query Commands
 
-1.  **db.**<u>_collection name_</u>**.find(**_{ key : { $op : value } }_**):** This is a complex query statement in mongodb. The value corresponding to a key is another object that can have a list of operations. Example usage:  
-    `db.users.find({ name: { $eq : 'Hamza' }})`  
-    The **op** can have the following list of values:
+1. **db.**<u>_collection name_</u>**.find(**_{ key : { $op : value } }_**):** This is a complex query statement in mongodb. The value corresponding to a key is another object that can have a list of operations. Example usage:  
+   `db.users.find({ name: { $eq : 'Hamza' }})`  
+   The **op** can have the following list of values:
 
-    - **$eq:** _for equal_
-    - **$ne:** _for not equal_
-    - **$gt:** _for greater than_
-    - **$lt:** _for less than_
-    - **$gte:** _for greater than or equal to_
-    - **$lte:** _for less than or equal to_
-    - **$in:** _checks for a value in the provided list and returns it_
-    - **$nin:** _does the opposite of $in. Returns all the values except those provided in the list_
-    - **$exists:** _checks if a property exists and returns it_
+   - **$eq:** _for equal_
+   - **$ne:** _for not equal_
+   - **$gt:** _for greater than_
+   - **$lt:** _for less than_
+   - **$gte:** _for greater than or equal to_
+   - **$lte:** _for less than or equal to_
+   - **$in:** _checks for a value in the provided list and returns it_
+   - **$nin:** _does the opposite of $in. Returns all the values except those provided in the list_
+   - **$exists:** _checks if a property exists and returns it_
 
-1.  **db.**<u>_collection name_</u>**.find(**_{ key : { $in : [ list ] } }_**):** This command using the **$in** op checks if a value exists in the provided list and then returns it. Example usage:  
-    `db.users.find({ name: { $in : ['Hamza', 'Fazal']}})`
+1. **db.**<u>_collection name_</u>**.find(**_{ key : { $in : [ list ] } }_**):** This command using the **$in** op checks if a value exists in the provided list and then returns it. Example usage:  
+   `db.users.find({ name: { $in : ['Hamza', 'Fazal']}})`
 
-1.  **db.**<u>_collection name_</u>**.find(**_{ key : { $exists : true or false } }_**):** This command checks if a property exists and returns the object containing that property. If we pass false to $exists, then it returns all those items that do not contain the specified property. Example usage:  
-    `db.users.find({ name: { $exists : true }})`
+1. **db.**<u>_collection name_</u>**.find(**_{ key : { $exists : true or false } }_**):** This command checks if a property exists and returns the object containing that property. If we pass false to $exists, then it returns all those items that do not contain the specified property. Example usage:  
+   `db.users.find({ name: { $exists : true }})`
 
-1.  **db.**<u>_collection name_</u>**.find(**_{ key : { $op : val , $op : val } }_**):** We can have an **AND** operation by combining different **$op** using commas ( , ). Example usage:  
-    `db.users.find({ age : { $gte: 19, $lte: 40 }})`  
-    This above command checks if age is greater than or equal to 19 and less than or equal to 40 and returns only those items that match this description.
+1. **db.**<u>_collection name_</u>**.find(**_{ key : { $op : val , $op : val } }_**):** We can have an **AND** operation by combining different **$op** using commas ( , ). Example usage:  
+   `db.users.find({ age : { $gte: 19, $lte: 40 }})`  
+   This above command checks if age is greater than or equal to 19 and less than or equal to 40 and returns only those items that match this description.
 
-1.  **db.**<u>_collection name_</u>**.find(**_{ $and : [{ key : val }, { key : val }, ...] }_**):** This query performs and **AND** operation. It takes an array of objects and checks if any item has the provided set of properties and returns that item. Example usage:  
-    `db.users.find({ $and: [{age:15}, {name:'Hamza'}]})`
+1. **db.**<u>_collection name_</u>**.find(**_{ $and : [{ key : val }, { key : val }, ...] }_**):** This query performs and **AND** operation. It takes an array of objects and checks if any item has the provided set of properties and returns that item. Example usage:  
+   `db.users.find({ $and: [{age:15}, {name:'Hamza'}]})`
 
-1.  **db.**<u>_collection name_</u>**.find(**_{ $or : [{ key : val }, { key : val }, ...] }_**):** This command performs the **OR** operation. Example usage:  
-    `db.users.find({ $or: [{age:15}, {name:'Hamza'}]})`
+1. **db.**<u>_collection name_</u>**.find(**_{ $or : [{ key : val }, { key : val }, ...] }_**):** This command performs the **OR** operation. Example usage:  
+   `db.users.find({ $or : [{age:15}, {name:'Hamza'}]})`
 
-1.  **db.**<u>_collection name_</u>**.find(**_{ $key : { $not : { key : val }}}_**):** This command performs the **NOT** operation. It does the opposite of whats provided. Example usage:  
-    `db.users.find({ age: { $not: { $lte: 20 }}})`
+1. **db.**<u>_collection name_</u>**.find(**_{ key : { $not : { key : val }}}_**):** This command performs the **NOT** operation. It does the opposite of whats provided. Example usage:  
+   `db.users.find({ age : { $not : { $lte : 20 }}})`
+
+1. **db.**<u>_collection name_</u>**.find(**_{ $expr : { $op : [ '$property_01', '$property_02' ] }}_**):** This command is used to compare two properties of an object. It compares based on the **$op** you provide. Example usage:  
+   `db.users.find({$expr: { $gt: ['$balance', '$debt']}})`
+
+1. **db.**<u>_collection name_</u>**.find(**_{ parent_key.child_key : val }_**):** If we have nested properties, we can access them using the dot ( . ) operator. Example usage:  
+   `db.users.find({ 'address.street' : '123 Main Street' })`
+
+1. **db.**<u>_collection name_</u>**.findOne(**_{ key : value }_**):** This query returns the first object that matches the first provided key value pair.
+
+1. **db.**<u>_collection name_</u>**.countDocuments(**_{ key : value }_**):** This command counts the number of documents that match the provided key value pair.
