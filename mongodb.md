@@ -81,3 +81,19 @@
 1. **db.**<u>_collection name_</u>**.findOne(**_{ key : value }_**):** This query returns the first object that matches the first provided key value pair.
 
 1. **db.**<u>_collection name_</u>**.countDocuments(**_{ key : value }_**):** This command counts the number of documents that match the provided key value pair.
+
+## Update Commands
+
+1. **db.**<u>_collection name_</u>**.updateOne(**_{ key : value }, { $set : { key : value }}_**):** This command updates the first field that contains the provided key value pair in the first object. In the second object, we provide the key we want to update along with the new value. Example usage:  
+   `db.users.updateOne({name: 'Hamza'}, {$set: {age: 20}})`
+
+1. **db.**<u>_collection name_</u>**.updateOne(**_{ key : value }, { $inc : { key : value }}_**):** This command updates the first found item by incrementing the specified key's value by the provided amount. Example usage:  
+   `db.users.updateOne({name: 'Hamza'}, {$inc: {age: 2}})`
+
+1. **db.**<u>_collection name_</u>**.updateOne(**_{ key : value }, { $rename : { old_column_name : new_column_name }}_**):** This command is used to rename a column. Example usage:  
+   `db.users.updateOne({name: 'Hamza'}, {$rename: { name: 'f_name' }})`
+
+1. **db.**<u>_collection name_</u>**.updateOne(**_{ key : value }, { $unset : { key : '' }}_**):** This command will remove the specified key from the object. Example usage:  
+   `db.users.updateOne({name: 'Hamza'}, {$unset: { name: '' }})`
+
+1.
