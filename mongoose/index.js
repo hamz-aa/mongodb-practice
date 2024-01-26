@@ -70,12 +70,28 @@ async function run() {
     //   .populate("bestFriend")
     //   .select("age");
 
-    const user = await User.findOne({ name: "Hamza" });
+    // const user = await User.findOne({ name: "Hamza" });
+
+    // await user.save();
+    // console.log(user);
+
+    // custom methods we created in schema
+    // user.sayHi();
+
+    // static method we created
+    // const user = await User.findByName("Hamza");
+
+    // query method we created
+    // cannot be called directly like the above static method
+    // need to chain it with query commands
+    // const user = await User.find().byName("Hamza");
+
+    // virtual method we created for email
+    const user = await User.findOne({ name: "Hamza", email: "hamza@mail.com" });
+    // console.log(user.namedEmail);
 
     // await user.save();
     console.log(user);
-
-    user.sayHi();
   } catch (error) {
     console.log(error.message);
     // console.log(error.errors.age);
