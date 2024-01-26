@@ -96,4 +96,22 @@
 1. **db.**<u>_collection name_</u>**.updateOne(**_{ key : value }, { $unset : { key : '' }}_**):** This command will remove the specified key from the object. Example usage:  
    `db.users.updateOne({name: 'Hamza'}, {$unset: { name: '' }})`
 
-1.
+1. **db.**<u>_collection name_</u>**.updateOne(**_{ key : value }, { $push : { key : val }}_**):** This command is used to push an element into array. The array must exist in the object corresponding to the provided key. Example usage:  
+   `db.users.updateOne({name: 'Danish'}, {$push: {hobbies: 'reading'}})`
+
+1. **db.**<u>_collection name_</u>**.updateOne(**_{ key : value }, { $pull : { key : val }}_**):** This command is used to remove an element from an array. The array must exist in the object corresponding to the provided key. Example usage:  
+   `db.users.updateOne({name: 'Danish'}, {$push: {hobbies: 'running'}})`
+
+1. **db.**<u>_collection name_</u>**.updateMany(**_{ key : value }, { $op : { key : val }}_**):** This command works just like all the above commands but instead of updating one item, it updates all the items that match the provided requirement. Example usage:  
+   `db.users.updateMany({address: {$exists: true}}, {$unset: {address: ''}})`
+
+1. **db.**<u>_collection name_</u>**.replaceOne(**_{ key : value }, { key : value}_**):** This command searches for an item that match the key value attributes provided in the first object and then replaces that entire item with the second object in the replace method.  
+   `db.users.replaceOne({name: 'fazal'}, {name: 'ahsan', age: 21})`
+
+## Delete Commands
+
+1.  **db.**<u>_collection name_</u>**.deleteOne(**_{ key : value }_**):** This command is used to delete an item from the database whose attribute match the provided key value pair. Example usage:  
+    `db.users.deleteOne({name: 'hamza'})`
+
+1.  **db.**<u>_collection name_</u>**.deleteMany(**_{ key : value }_**):** This command is used to delete all the items whose attributes match the provided key value pairs. Example usage:  
+    `db.users.deleteMany({age: {$exists: false}})`
